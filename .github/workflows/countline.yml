@@ -18,9 +18,9 @@ jobs:
           find "$DIRECTORY" -type f -name "*.md" | while read -r file; do
             line_count=$(wc -l < "$file")
             if [ "$line_count" -le 10 ]; then
-              echo "Error: File '$file' has 10 lines or less ($line_count lines)." >&2
+              echo "Error: '$file' 파일이 10줄보다 적게 작성되었어요. (현재 : $line_count 줄)." >&2
               exit 1
             fi
           done
 
-          echo "All .md files have more than 10 lines."
+          echo "모든 .md 파일이 10줄의 제한 조건을 충족합니다."

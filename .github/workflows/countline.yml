@@ -1,0 +1,17 @@
+name: Count Lines of md
+on: [pull_request]
+
+jobs:
+  count-lines:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Count Lines of md 📊
+        run: |
+          echo "The number of lines in the markdown files are $(find ./pages -name '*.md' | xargs wc -l)"
+          if [ $(find ./pages -name '*.md' | xargs wc -l | awk '{print $1}') -lt 10 ]; then
+            echo "md파일의 내용을 10줄보다 길게 작성해주세요."
+            exit 1
+          fi
